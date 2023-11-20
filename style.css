@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0.5);
+}
+.card-container {
+    width: 700px;
+    height: 100vh;
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 50px;
+    background-color: white;
+}
+.card-container div {
+    > p {
+        margin: 0;
+        flex: 1;
+    }
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(214, 236, 255);
+    gap: 20px;
+}
+button {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.3rem;
+    font-weight: 700; 
+    padding: 0 20px;
+    width: fit-content;
+    height: fit-content;
+}
+dialog::backdrop {
+    background: linear-gradient(green, yellowgreen);
+}
+form {
+    > p {
+        > label {
+            > select {
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 1.3rem;
+                font-weight: 700; 
+            }
+            > input {
+                line-height: 2rem;
+                font-size: 1.5rem;
+                padding: 0 5px;
+            }
+            display: flex;
+            flex-direction: column;
+        }
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 400px;
+    width: 400px;
+}

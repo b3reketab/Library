@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <dialog id="bkdlg">
+        <form>
+            <p class="styl">
+                <legend>Enter book details</legend>
+                <label for="title">
+                    Book title:
+                    <input type="text" id="title">
+                </label>
+                <label for="author">
+                    Book Author:
+                    <input type="text" id="author">
+                </label>
+                <label>
+                    Have you read it?
+                    <select id="sel">
+                        <option>Choose</option>
+                        <option value="Read">Yes</option>
+                        <option value="Not yet">No</option>
+                    </select>
+                </label>
+            </p>
+            <div>
+                <button id="submit">Add</button>
+                <button value="cancel" formmethod="dialog">Cancel</button>
+            </div>
+        </form>
+    </dialog>
+    <button id="add"> + New Book</button>
+    <div class="card-container"></div>
+</body>
+</html>

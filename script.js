@@ -35,10 +35,12 @@ subBtn.addEventListener('click', (event) => {
     bookDialog.close(display)
 })
 
-function Book(title, author, read) {
-    this.title = title
-    this.author = author
-    this.read = read
+class Book {
+    constructor(title, author, read) {
+        this.title = title
+        this.author = author
+        this.read = read
+    }
 }
 
 function addBooks() {

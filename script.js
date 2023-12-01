@@ -7,33 +7,7 @@ const select = bookDialog.querySelector('select')
 const bookShelf = document.querySelector('.card-container')
 const myBooks = []
 const input = []
-let i = -1
-
-title.addEventListener('change', (e) => {
-    input[0] = title.value
-})
-
-author.addEventListener('change', (e) => {
-    input[1] = author.value
-})
-
-select.addEventListener('change', (e) => {
-    input[2] = select.value
-})
-
-addBtn.addEventListener('click', () => {
-    bookDialog.showModal()
-    if(bookDialog.returnValue !== 'cancel') {
-        i++
-    }
-})
-
-bookDialog.addEventListener('close', display)
-
-subBtn.addEventListener('click', (event) => {
-    event.preventDefault()
-    bookDialog.close(display)
-})
+let i = 0
 
 class Book {
     constructor(title, author, read) {
@@ -41,48 +15,60 @@ class Book {
         this.author = author
         this.read = read
     }
-}
-
-function addBooks() {
-    myBooks[i] = new Book(...input)
+    
+    info() {
+        return `Title: ${this.title}<br>
+                Author: ${this.author}<br>
+                Read: ${this.read}`
+    }
 }
 
 function display() {
     if(bookDialog.returnValue === 'cancel') {
         return
     }
-
-    addBooks()
-
     const card = document.createElement('div')
     const red = document.createElement('button')
     const del = document.createElement('button')
     const para = document.createElement('p')
-    red.setAttribute('id', `${i}`)
     red.textContent = 'Read Status'
-    del.setAttribute('class', `${i}`)
     del.textContent = 'delete'
-     
-    para.innerHTML = `Title: ${myBooks[i].title}<br>
-                Author: ${myBooks[i].author}<br>
-                Read: ${myBooks[i].read}`
-    
+    card.classList.add(`${i}`)
+
+    myBooks[i] = new Book(...input)
+    para.innerHTML = myBooks[i].info()  
     del.addEventListener('click', () => {
-        delete myBooks[del.className]
+        delete myBooks[card.className]
         bookShelf.removeChild(card)
     })
-
     red.addEventListener('click', () => {
-            myBooks[red.id].read === 'Read' 
-                ? myBooks[red.id].read = 'Not yet' 
-                : myBooks[red.id].read = 'Read'
-            para.innerHTML = `Title: ${myBooks[red.id].title}<br>
-                        Author: ${myBooks[red.id].author}<br>
-                        Read: ${myBooks[red.id].read}`
+        myBooks[card.className].read === 'Read' 
+            ? myBooks[card.className].read = 'Not yet' 
+            : myBooks[card.className].read = 'Read'
+        para.innerHTML = myBooks[card.className].info()
     })
-
     bookShelf.appendChild(card)
     card.appendChild(para)
     card.appendChild(red)
     card.appendChild(del)
+
+    i++
 }
+
+title.addEventListener('change', (e) => {
+    input[0] = title.value
+})
+author.addEventListener('change', (e) => {
+    input[1] = author.value
+})
+select.addEventListener('change', (e) => {
+    input[2] = select.value
+})
+addBtn.addEventListener('click', () => {
+    bookDialog.showModal()
+})
+subBtn.addEventListener('click', (event) => {
+    event.preventDefault()
+    bookDialog.close(display)
+})
+bookDialog.addEventListener('close', display)
